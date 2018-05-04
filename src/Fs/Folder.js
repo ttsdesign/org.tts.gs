@@ -1,0 +1,9 @@
+Fs.Folder = {
+  'Create': function (path) { if (path == '') { return DriveApp.getRootFolder(); } var folders = path.split('/'); var navigator = DriveApp.getRootFolder(); for (var j=0; j<folders.length; j++) { var i = navigator.getFoldersByName(folders[j]); if (i.hasNext()) { navigator = i.next(); } else { navigator = navigator.createFolder(folders[j]); } } return navigator; },
+  'Delete': function (path) { if (path == '') { return; } var folder = Folder.Get(path); if (folder == null) { return; } Folder.DeleteFiles(path); var i = folder.getFolders(); while (i.hasNext()) { Folder.Delete(path+'/'+i.next().getName()); } folder.setTrashed(true); },
+  'DeleteFiles': function (path) { var folder = Folder.Get(path); if (folder == null) { return false; } var i = folder.getFiles(); while(i.hasNext()) { i.next().setTrashed(true); } },
+  'Get': function (path) { if (path == '') { return DriveApp.getRootFolder(); } var folders = path.split('/'); var navigator = DriveApp.getRootFolder(); for (var j=0; j<folders.length; j++ ) { var i = navigator.getFoldersByName(folders[j]); if (i.hasNext()) { navigator = i.next(); } else { return null; } } return navigator; },
+  'GetId': function (path) { var folder = Folder.Get(path); return (folder == null) ? null : folder.getId(); },
+  'Exists': function (path) { if (Folder.Get(path) == null) { return false; } return true; },
+  'Move': function (path, destination) { var folder = Folder.Get(path); if (folder == null) { return false; } destination = (Folder.Exists(destination)) ? Folder.Get(destination) : Folder.Create(destination); var i = folder.getParents(); while(i.hasNext()) { i.next().removeFolder(folder); } return destination.addFolder(folder); }
+};
