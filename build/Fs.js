@@ -21,6 +21,7 @@ var sources = {
 };
 
 var outputFile = "dist/Fs.js";
+
 //////////////////////////////////////////////////////////////////////////////////
 ///// Nothing to Edit Below ////////////////////////////////////////////////////
 Path = require("path");
@@ -41,20 +42,3 @@ Object.keys(sources).forEach(function (m) {
 output = "Fs = {\r\n"+code.join(",\r\n")+"\r\n}";
 Fs.writeFileSync(outputFile, Uglify.minify(output, {output: {beautify: true}}).code, "utf8");
 Fs.writeFileSync(outputFile.replace(/\.js$/, ".min.js"), Uglify.minify(output).code, "utf8");
-
-process.exit(0);
-		//code[f.substr(f.lastIndexOf("/")+1)] = Uglify.minify(source, {compress: {keep_fnames:true}, mangle: {keep_fnames:true}});
-		//code[f.substr(f.lastIndexOf("/")+1)] = Uglify.minify(source);
-
-
-var output = "";
-Object.keys(code).forEach(function (f) {
-	output += "/* "+f+" */\n";
-	output += code[f].code + "\n";
-});
-
-Fs.writeFileSync(outputFile, output, "utf8");
-//Fs.writeFileSync(outputFile.replace(/\.js$/, ".min.js"), Uglify.minify(output, {compress: {keep_fnames:true}, mangle: {keep_fnames:true}}).code, "utf8");
-Fs.writeFileSync(outputFile.replace(/\.js$/, ".min.js"), Uglify.minify(output).code, "utf8");
-
-
