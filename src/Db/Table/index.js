@@ -1,27 +1,27 @@
-function Table (sheet) {
+(function (NS) {
+	
+	function Table (sheet) {
+		var fields;
 
-	Object.defineProperty(this, "Sheet", {
-		configurable: false, 
-		enumerable: false,
-		get: function () {
-			return sheet;
-		}
-	});
+/*~IncludeFile("Add.js")~*/
+/*~IncludeFile("Convert.js")~*/
+/*~IncludeFile("Data.js")~*/
+/*~IncludeFile("Delete.js")~*/
+/*~IncludeFile("Exists.js")~*/
+/*~IncludeFile("Export.js")~*/
+/*~IncludeFile("FieldIndex.js")~*/
+/*~IncludeFile("Fields.js")~*/
+/*~IncludeFile("Get.js")~*/
+/*~IncludeFile("Name.js")~*/
+/*~IncludeFile("Row.js")~*/
+/*~IncludeFile("Sheet.js")~*/
+/*~IncludeFile("Sort.js")~*/
+/*~IncludeFile("Update.js")~*/
 
+		return this;
+	}
 
-	var fields;
-	Object.defineProperty(this, "Fields", {
-		configurable: false, 
-		enumerable: false,
-		get: function () {
-			if (typeof fields === "undefined") {
-				LOG("Defining fields...");
-				fields = [1,2];
-			}
-			return fields;
-		}
-	});
+	NS.Table = Table;
 
-	return this;
-}
+}(Db));
 

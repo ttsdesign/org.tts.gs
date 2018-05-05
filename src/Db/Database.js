@@ -30,7 +30,7 @@
 			value: function (name, fields) {
 				var sheet = ss.insertSheet(name);
 				FormatSheetAsTable(sheet, fields);
-				var table = new Table(sheet);
+				var table = new Db.Table(sheet);
 				tables[table.Name] = table;
 				return table;
 			}
@@ -63,7 +63,7 @@
 				if (typeof tables === "undefined") {
 					tables = [];
 					ss.getSheets().forEach(function (sheet) {
-						var table = new Table(sheet);
+						var table = new Db.Table(sheet);
 						tables[table.Name] = table;
 					});
 				}
