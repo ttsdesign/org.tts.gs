@@ -1,5 +1,5 @@
 Fs.Folder.Get = function (path) {
-	if (path == "") {
+	if (typeof path === "undefined" || "" == path) {
 		return DriveApp.getRootFolder();
 	}
 	var folders = path.split("/");
